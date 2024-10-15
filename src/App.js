@@ -25,8 +25,8 @@ function App() {
             <Nav.Link href="#home" className="nav-link">
               Home
             </Nav.Link>
-            <Nav.Link href="#features" className="nav-link">
-              Features
+            <Nav.Link href="#products" className="nav-link">
+              Products
             </Nav.Link>
             <Nav.Link href="#pricing" className="nav-link">
               Pricing
