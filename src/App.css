@@ -7,7 +7,7 @@
 
 .main-bg {
   height: 400px;
-  background-image: url(images/eyeliner-4713577_1920.jpg);
+  background-image: url(images/mainbg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
   margin-bottom: 100px;
@@ -26,17 +26,34 @@
   font-family: "Lora", serif;
 }
 
-.product-title {
-  font-family: "Dosis", sans-serif;
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card-link:hover {
+  color: #000;
+}
+
+.skins-img {
+  margin-bottom: 10px;
+}
+
+.skins-img:hover {
+  opacity: 0.8;
+}
+
+.skins-title {
+  font-family: "Lora", serif;
   margin-top: 20px;
   font-size: 20px;
   cursor: pointer;
 }
 
-.product-title:hover {
+.skins-title:hover {
   text-decoration: underline;
 }
 
-.product-description {
+.skins-content {
   font-family: "Dosis", sans-serif;
 }

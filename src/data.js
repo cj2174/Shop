@@ -1,22 +1,24 @@
-const product = [
+let data = [
   {
     id: 0,
-    title: "Hydrating Moisturizer",
-    content: "Perfect for daily hydration",
+    title: "White and Black",
+    content: "Born in France",
     price: 120000,
   },
+
   {
     id: 1,
-    title: "Soothing Toner",
-    content: "Calms and refreshes the skin",
+    title: "Red Knit",
+    content: "Born in Seoul",
     price: 110000,
   },
+
   {
     id: 2,
-    title: "Brightening Serum",
-    content: "Born to boost skin radiance",
+    title: "Grey Yordan",
+    content: "Born in the States",
     price: 130000,
   },
 ];
 
-export default product;
+export default data;
