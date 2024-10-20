@@ -1,9 +1,6 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import productImage1 from "./images/product1.jpg";
-import productImage2 from "./images/product2.jpg";
-import productImage3 from "./images/product3.jpg";
 import "./App.css";
 import data from "./data.js";
 import Detail from "./detail.js";
@@ -13,7 +10,6 @@ import axios from "axios";
 
 function App() {
   let [skins, setSkins] = useState(data);
-  const images = [productImage1, productImage2, productImage3];
 
   // 정렬 기준 상태 추가
   const [sortOrder, setSortOrder] = useState("default");
@@ -28,10 +24,7 @@ function App() {
       sortedSkins.sort((a, b) => a.price - b.price);
     }
 
-    return sortedSkins.map((skin, index) => ({
-      skin,
-      img: images[index],
-    }));
+    return sortedSkins;
   };
 
   // 정렬 버튼 클릭 핸들러
@@ -66,10 +59,7 @@ function App() {
 
       {/* 라우팅 처리 */}
       <Routes>
-        <Route
-          path="/detail/:id"
-          element={<Detail skins={skins} images={images} />}
-        />
+        <Route path="/detail/:id" element={<Detail skins={skins} />} />
         {/* 기본 경로일 때 Card 목록 보여주기 */}
         <Route
           path="/"
@@ -90,26 +80,10 @@ function App() {
                 </button>
               </div>
               <div className="row">
-                {sortSkins().map(({ skin, img }) => (
-                  <Card skins={skin} img={img} key={skin.id} />
+                {sortSkins().map((skin) => (
+                  <Card skins={skin} key={skin.id} />
                 ))}
               </div>
-
-              <button
-                onClick={() => {
-                  axios
-                    .get("https://codingapple1.github.io/shop/data2.json")
-                    .then((result) => {
-                      let copy = [...skins, ...result.data];
-                      setSkins(copy);
-                    })
-                    .catch(() => {
-                      console.log("실패");
-                    });
-                }}
-              >
-                버튼
-              </button>
             </div>
           }
         />
@@ -123,7 +97,7 @@ function Card(props) {
     <div className="col-md-4">
       <Link to={`/detail/${props.skins.id}`} className="card-link">
         <img
-          src={props.img}
+          src={props.skins.img}
           width="300px"
           className="skins-img"
           height="250px"

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Nav from "react-bootstrap/Nav";
-import { TabContent } from "react-bootstrap";
 
 let YellowBtn = styled.button`
   background: ${(props) => props.bg};
@@ -25,7 +24,7 @@ function Detail(props) {
     return () => {
       setFade2("");
     };
-  });
+  }, []);
 
   useEffect(() => {
     let a = setTimeout(() => {
@@ -35,26 +34,28 @@ function Detail(props) {
     return () => {
       clearTimeout(a);
     };
-  });
+  }, []);
 
   return (
     <div className={"container start " + fade2}>
-      {alert == true ? (
+      {alert === true ? (
         <div className="alert alert-warning">2초 이내 구매 시 할인</div>
       ) : null}
       <div className="row">
         <div className="col-md-6">
+          {/* 이미지 경로 수정 */}
           <img
-            src={props.images[id]}
+            src={props.skins[id].img}
             className="detail-img"
             width="500px"
             height="400px"
+            alt={props.skins[id].title}
           />
         </div>
         <div className="col-md-6">
           <h4 className="pt-5">{props.skins[id].title}</h4>
           <p>{props.skins[id].content}</p>
-          <p>{props.skins[id].price}</p>
+          <p>{props.skins[id].price}원</p>
           <YellowBtn
             onClick={() => {
               setCount(count + 1);
