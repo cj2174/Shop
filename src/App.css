@@ -5,6 +5,19 @@
   text-align: center;
 }
 
+.start {
+  opacity: 0;
+}
+
+.end {
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.detail-img {
+  margin-bottom: 30px;
+}
+
 .main-bg {
   height: 400px;
   background-image: url(images/mainbg.jpg);

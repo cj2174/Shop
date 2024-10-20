@@ -9,9 +9,10 @@ import data from "./data.js";
 import Detail from "./detail.js";
 import { useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
+import axios from "axios";
 
 function App() {
-  let [skins] = useState(data);
+  let [skins, setSkins] = useState(data);
   const images = [productImage1, productImage2, productImage3];
 
   // 정렬 기준 상태 추가
@@ -65,7 +66,10 @@ function App() {
 
       {/* 라우팅 처리 */}
       <Routes>
-        <Route path="/detail/:id" element={<Detail skins={skins} images={images}/>} />
+        <Route
+          path="/detail/:id"
+          element={<Detail skins={skins} images={images} />}
+        />
         {/* 기본 경로일 때 Card 목록 보여주기 */}
         <Route
           path="/"
@@ -90,6 +94,22 @@ function App() {
                   <Card skins={skin} img={img} key={skin.id} />
                 ))}
               </div>
+
+              <button
+                onClick={() => {
+                  axios
+                    .get("https://codingapple1.github.io/shop/data2.json")
+                    .then((result) => {
+                      let copy = [...skins, ...result.data];
+                      setSkins(copy);
+                    })
+                    .catch(() => {
+                      console.log("실패");
+                    });
+                }}
+              >
+                버튼
+              </button>
             </div>
           }
         />
@@ -102,7 +122,13 @@ function Card(props) {
   return (
     <div className="col-md-4">
       <Link to={`/detail/${props.skins.id}`} className="card-link">
-        <img src={props.img} width="300px" className="skins-img" height="250px" alt="product" />
+        <img
+          src={props.img}
+          width="300px"
+          className="skins-img"
+          height="250px"
+          alt="product"
+        />
         <h3 className="skins-title">{props.skins.title}</h3>
       </Link>
       <p className="skins-price">{props.skins.price}원</p>
